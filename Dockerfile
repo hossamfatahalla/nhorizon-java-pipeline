@@ -16,4 +16,4 @@ RUN  npm install
 
 EXPOSE 9090
 
-ENTRYPOINT ["node", "./app.js"]
+CMD ["node", "./app.js"]
