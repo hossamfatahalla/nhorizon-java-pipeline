@@ -22,7 +22,7 @@ pipeline {
 
         stage('Pull Docker Image on Another Agent') {
             agent {
-                docker { image 'hossam7/nhorizon-java-app:latest' }
+                label 'agent-node'
             }
             steps {
                 script {
@@ -32,6 +32,9 @@ pipeline {
         }
 
         stage('Run Docker Image') {
+            agent {
+                label 'agent-node'
+            }
             steps {
                 script {
                     docker.image("hossam7/nhorizon-java-app:latest").run('-d -p 8080:8080')
@@ -40,6 +43,9 @@ pipeline {
         }
 
         stage('Check Connectivity') {
+            agent {
+                label 'agent-node'
+            }
             steps {
                 script {
                     def response = sh(script: "curl -o /dev/null -s -w \"%{http_code}\" http://localhost:8080", returnStdout: true).trim()
