@@ -22,7 +22,7 @@ pipeline {
 
         stage('Pull Docker Image on Another Agent') {
             agent {
-                label 'test2-agent'
+                label 'remote'
             }
             steps {
                 script {
@@ -33,7 +33,7 @@ pipeline {
 
         stage('Run Docker Image') {
             agent {
-                label 'test2-agent'
+                label 'remote'
             }
             steps {
                 script {
@@ -44,7 +44,7 @@ pipeline {
 
         stage('Check Connectivity') {
             agent {
-                label 'test2-agent'
+                label 'remote'
             }
             steps {
                 script {
