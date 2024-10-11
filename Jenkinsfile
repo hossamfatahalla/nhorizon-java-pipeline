@@ -57,7 +57,7 @@ pipeline {
             }
             steps {
                 script {
-                    def response = sh(script: "curl -o /dev/null -s -w \"%{http_code}\" http://localhost:8080", returnStdout: true).trim()
+                    def response = sh(script: "curl -o /dev/null -s -w \"%{http_code}\" http://localhost:8081", returnStdout: true).trim()
                     if (response == "200") {
                         echo "Website is accessible."
                     } else {
