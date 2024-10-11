@@ -2,6 +2,16 @@ pipeline {
     agent any
 
     stages {
+        stage('Login to Docker') {
+            steps {
+                script {
+                    // تسجيل الدخول إلى Docker باستخدام اعتمادات Jenkins
+                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                }
+            }
+        }
+
+    stages {
         stage('Build Docker Image') {
             steps {
                 script {
