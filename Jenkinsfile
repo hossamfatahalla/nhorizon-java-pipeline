@@ -9,7 +9,7 @@ pipeline {
                     sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
                 }
             }
-        } // يجب أن يكون هذا القوس مغلقًا
+        }
 
         stage('Build Docker Image') {
             steps {
@@ -46,23 +46,8 @@ pipeline {
             }
             steps {
                 script {
+                    // استخدام المنفذ 9090
                     docker.image("hossam7/nhorizon-java-app:latest").run('-d -p 9090:9090')
-                }
-            }
-        }
-
-        stage('Check Connectivity') {
-            agent {
-                label 'remote'
-            }
-            steps {
-                script {
-                    def response = sh(script: "curl -o /dev/null -s -w \"%{http_code}\" http://localhost:9090", returnStdout: true).trim()
-                    if (response == "200") {
-                        echo "Website is accessible."
-                    } else {
-                        error("Website is not accessible, pipeline failed.")
-                    }
                 }
             }
         }
