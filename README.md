@@ -82,8 +82,7 @@ This project showcases a CI/CD pipeline using Docker and Jenkins, designed for t
 ## Contributors
 
 - **Hossam Fathalla**
-- **Ahmed Gamal**
-- **Ahmed Nazmy**
+
 
 ## License
 
