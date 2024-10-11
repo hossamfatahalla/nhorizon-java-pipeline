@@ -9,9 +9,8 @@ pipeline {
                     sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
                 }
             }
-        }
+        } // يجب أن يكون هذا القوس مغلقًا
 
-    stages {
         stage('Build Docker Image') {
             steps {
                 script {
@@ -67,6 +66,5 @@ pipeline {
                 }
             }
         }
-    }
+    } // هذا هو القوس المغلق للـ stages
 }
-
