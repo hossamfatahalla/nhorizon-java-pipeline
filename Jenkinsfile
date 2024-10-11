@@ -46,7 +46,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.image("hossam7/nhorizon-java-app:latest").run('-d -p 8080:8080')
+                    docker.image("hossam7/nhorizon-java-app:latest").run('-d -p 9090:9090')
                 }
             }
         }
@@ -57,7 +57,7 @@ pipeline {
             }
             steps {
                 script {
-                    def response = sh(script: "curl -o /dev/null -s -w \"%{http_code}\" http://localhost:8081", returnStdout: true).trim()
+                    def response = sh(script: "curl -o /dev/null -s -w \"%{http_code}\" http://localhost:9090", returnStdout: true).trim()
                     if (response == "200") {
                         echo "Website is accessible."
                     } else {
